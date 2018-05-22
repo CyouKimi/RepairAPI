@@ -21,6 +21,7 @@ public class ApplicationUser {
     private String password;
     private Integer role;
     private Integer profession;
+    private String comments;
     @OneToMany(mappedBy = "applicationUser",fetch=FetchType.EAGER)
     private Set<Repair> RepairSet=new HashSet<Repair>();
 	public Integer getId() {
@@ -75,6 +76,14 @@ public class ApplicationUser {
 	public void setProfession(Integer profession) {
 		this.profession = profession;
 	}
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	public Set<Repair> getRepairSet() {
 		return RepairSet;
 	}
