@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
 	            @Override  
 	            public Predicate toPredicate(Root<ApplicationUser> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {  
 //	                Predicate p1 = criteriaBuilder.equal(root.get("name").as(String.class), userQuery.getName());  
-	                Predicate p2 = criteriaBuilder.like(root.get("email").as(String.class), "%"+ userQuery.getEmail() + "%");  
+	                Predicate p2 = criteriaBuilder.like(root.get("name").as(String.class), "%"+ userQuery.getName() + "%");  
 	                query.where(criteriaBuilder.and(p2));  
 //	                query.where(criteriaBuilder.or(p2));
 	                return query.getRestriction();  

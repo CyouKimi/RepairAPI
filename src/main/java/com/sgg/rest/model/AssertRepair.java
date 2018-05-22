@@ -12,11 +12,12 @@ public class AssertRepair {
 	private Integer repair_status;
 	private String  content;
 	private String telephone;
+	private String repairMan;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date create_time;
 
 	public AssertRepair(Integer id, String name, Integer area, String address, Integer repair_status, String content,
-			String telephone, Date create_time) {
+			String telephone, String repairMan,Date create_time) {
 		this.id = id;
 		this.name = name;
 		this.area = area;
@@ -24,6 +25,7 @@ public class AssertRepair {
 		this.repair_status = repair_status;
 		this.content = content;
 		this.telephone = telephone;
+		this.repairMan = repairMan;
 		this.create_time = create_time;
 	}
 	public Integer getId() {
@@ -67,6 +69,12 @@ public class AssertRepair {
 	}
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+	public String getRepairMan() {
+		return repairMan;
+	}
+	public void setRepairMan(String repairMan) {
+		this.repairMan = repairMan;
 	}
 	public Date getCreate_time() {
 		return create_time;
