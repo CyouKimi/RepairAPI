@@ -101,7 +101,7 @@ public class RepairServiceImpl implements RepairService {
             @Override  
             public Predicate toPredicate(Root<Repair> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {  
             	Predicate p2 = criteriaBuilder.like(root.get("content").as(String.class), "%"+ repairQuery.getContent() + "%"); 
-            	if(StringUtils.IsNull(repairQuery.getUserName())) {
+            	if(StringUtils.IsNull(repairQuery.getSno())) {
 //            		if(repairQuery.getUserName()!=null&&!repairQuery.getUserName().equals("")) {
             		Predicate p1 = criteriaBuilder.equal(root.get("applicationUser").get("sno").as(String.class), repairQuery.getSno());
             		if(StringUtils.IsNull(repairQuery.getRepair_status())) {
