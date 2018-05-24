@@ -54,7 +54,7 @@ public class UserController {
 //	@RequestMapping(value="/sign-up", method=RequestMethod.POST)
 //	public ResponseEntity<Map<String,Object>>  getNewUser( @RequestBody ApplicationUser u) {
 //		Map<String,Object> map = new HashMap<String,Object>();
-//		ApplicationUser f_user = userRepository.findByName(u.getName());
+//		ApplicationUser f_user = userRepository.findBySno(u.getName());
 ////		List <ApplicationUser> userList = null;
 //		if (f_user!=null) {
 //			map.put("result", "user sign up failed,user exists");

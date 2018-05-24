@@ -31,7 +31,7 @@ public class RepairServiceImpl implements RepairService {
 	
 	@Override
 	public boolean createRepair(String userId, Repair repair) {
-		ApplicationUser user = userRepository.findByName(userId);
+		ApplicationUser user = userRepository.findBySno(userId);
 		if (user!=null) {
 			repair.setApplicationUser(user);
 			repair.setCreate_time(new Date());
@@ -103,7 +103,7 @@ public class RepairServiceImpl implements RepairService {
             	Predicate p2 = criteriaBuilder.like(root.get("content").as(String.class), "%"+ repairQuery.getContent() + "%"); 
             	if(StringUtils.IsNull(repairQuery.getUserName())) {
 //            		if(repairQuery.getUserName()!=null&&!repairQuery.getUserName().equals("")) {
-            		Predicate p1 = criteriaBuilder.equal(root.get("applicationUser").get("name").as(String.class), repairQuery.getUserName());
+            		Predicate p1 = criteriaBuilder.equal(root.get("applicationUser").get("sno").as(String.class), repairQuery.getSno());
             		if(StringUtils.IsNull(repairQuery.getRepair_status())) {
 //            		if(repairQuery.getRepair_status()!=null&&!repairQuery.getRepair_status().toString().equals("")) {
             				Predicate p3 = criteriaBuilder.equal(root.get("repair_status").as(String.class), repairQuery.getRepair_status());

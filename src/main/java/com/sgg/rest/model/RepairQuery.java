@@ -6,6 +6,7 @@ public class RepairQuery {
     private Integer area;
     private Integer repair_status;
     private String userName;
+    private String sno;
     private String isFinish;
     private String isEvaluate;
 	public String getInfo() {
@@ -37,6 +38,12 @@ public class RepairQuery {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getSno() {
+		return sno;
+	}
+	public void setSno(String sno) {
+		this.sno = sno;
 	}
 	public String getIsFinish() {
 		return isFinish;
