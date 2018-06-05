@@ -22,6 +22,7 @@ import com.sgg.rest.repository.RepairRepository;
 import com.sgg.rest.repository.UserRepository;
 import com.sgg.rest.service.RepairService;
 import com.sgg.rest.util.StringUtils;
+import  static com.sgg.rest.util.SystemConstants.SEVENTEEN;;
 @Service
 public class RepairServiceImpl implements RepairService {
 	@Resource  
@@ -101,43 +102,51 @@ public class RepairServiceImpl implements RepairService {
             @Override  
             public Predicate toPredicate(Root<Repair> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {  
             	Predicate p2 = criteriaBuilder.like(root.get("content").as(String.class), "%"+ repairQuery.getContent() + "%"); 
+//            	Predicate p5 = criteriaBuilder.like(root.get("area").as(String.class), repairQuery.getArea()+ "%"); 
+            	Predicate p5 = null;
+            	if (StringUtils.IsNull(repairQuery.getUserName())) {
+                	p5 = criteriaBuilder.between(root.get("area").as(Integer.class), repairQuery.getArea(), SEVENTEEN);
+            	}else {
+            		if (repairQuery.getArea() == null) {
+            			p5 = criteriaBuilder.like(root.get("area").as(String.class), "%"); 
+            		}else {
+            			p5 = criteriaBuilder.like(root.get("area").as(String.class), "%"+ repairQuery.getArea()+ "%"); 
+            		}
+            	}
+
             	if(StringUtils.IsNull(repairQuery.getSno())) {
-//            		if(repairQuery.getUserName()!=null&&!repairQuery.getUserName().equals("")) {
             		Predicate p1 = criteriaBuilder.equal(root.get("applicationUser").get("sno").as(String.class), repairQuery.getSno());
             		if(StringUtils.IsNull(repairQuery.getRepair_status())) {
-//            		if(repairQuery.getRepair_status()!=null&&!repairQuery.getRepair_status().toString().equals("")) {
             				Predicate p3 = criteriaBuilder.equal(root.get("repair_status").as(String.class), repairQuery.getRepair_status());
             			if(StringUtils.IsNull(repairQuery.getIsEvaluate())) {
             				Predicate p4 = criteriaBuilder.equal(root.get("isEvaluate").as(String.class), repairQuery.getIsEvaluate());
-            				query.where(criteriaBuilder.and(p4,p3,p2,p1));  
+            				query.where(criteriaBuilder.and(p5,p4,p3,p2,p1));  
             			}else {
-            				query.where(criteriaBuilder.and(p3,p2,p1)); 
+            				query.where(criteriaBuilder.and(p5,p3,p2,p1)); 
             			}
             		}else {
             			if(StringUtils.IsNull(repairQuery.getIsEvaluate())) {
             				Predicate p4 = criteriaBuilder.equal(root.get("isEvaluate").as(String.class), repairQuery.getIsEvaluate());
-            				query.where(criteriaBuilder.and(p4,p2,p1));  
+            				query.where(criteriaBuilder.and(p5,p4,p2,p1));  
             			}else {
-            				query.where(criteriaBuilder.and(p2,p1)); 
+            				query.where(criteriaBuilder.and(p5,p2,p1)); 
             			}
             		}
             	} else {
             		if(StringUtils.IsNull(repairQuery.getRepair_status())) {
-//            		if(repairQuery.getRepair_status()!=null&&!repairQuery.getRepair_status().toString().equals("")) {
             			Predicate p3 = criteriaBuilder.equal(root.get("repair_status").as(String.class), repairQuery.getRepair_status());
             			if(StringUtils.IsNull(repairQuery.getIsEvaluate())){
             				Predicate p4 = criteriaBuilder.equal(root.get("isEvaluate").as(String.class), repairQuery.getIsEvaluate());
-            				query.where(criteriaBuilder.and(p4,p3,p2));  
+            				query.where(criteriaBuilder.and(p5,p4,p3,p2));  
             			}else {
-            				query.where(criteriaBuilder.and(p3,p2));  
+            				query.where(criteriaBuilder.and(p5,p3,p2));  
             			}
-            			
             		}else {
             			if(StringUtils.IsNull(repairQuery.getIsEvaluate())){
             				Predicate p4 = criteriaBuilder.equal(root.get("isEvaluate").as(String.class), repairQuery.getIsEvaluate());
-            				query.where(criteriaBuilder.and(p4,p2));  
+            				query.where(criteriaBuilder.and(p5,p4,p2));  
             			}else {
-            				query.where(criteriaBuilder.and(p2)); 
+            				query.where(criteriaBuilder.and(p5,p2)); 
             			}
             		}
             	}

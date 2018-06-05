@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgg.rest.model.Material;
@@ -33,6 +34,14 @@ public class MaterialController {
 		materialRepository.save(materialList);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("result"," materialList create success");
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/query", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> GetMaterialByCode(@RequestParam String code) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		Material material = materialRepository.findByCode(code);
+		map.put("result", material);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 }
