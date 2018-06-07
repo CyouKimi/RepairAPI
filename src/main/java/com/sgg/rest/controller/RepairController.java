@@ -81,4 +81,10 @@ public class RepairController {
 		map.put("result", res);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	@GetMapping(path="/countByArea")
+	public ResponseEntity<Map<String,Object>> getCountByArea(@RequestParam Integer start, @RequestParam Integer end) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("result", repairRepositoryCustom.countAssertRepairByArea(start,end));
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 }

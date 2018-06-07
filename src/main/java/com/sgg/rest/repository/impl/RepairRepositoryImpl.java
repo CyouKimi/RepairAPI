@@ -49,4 +49,15 @@ public class RepairRepositoryImpl implements RepairRepositoryCustom {
     return result;
 	}
 
+	@Override
+	public Long countAssertRepairByArea(Integer start, Integer end) {
+	      EntityManager em = emf.createEntityManager();
+//      Query query = em.createQuery("select count(r) from Repair r where r.area= :area ");
+      Query query = em.createQuery("select count(r) from Repair r where r.area between :start and :end ");
+       query.setParameter("start", start);
+       query.setParameter("end", end);
+       Long result = (Long) query.getSingleResult();
+		return result;
+	}
+
 }
