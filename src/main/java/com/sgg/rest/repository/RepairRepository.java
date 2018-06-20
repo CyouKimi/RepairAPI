@@ -1,5 +1,7 @@
 package com.sgg.rest.repository;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +14,7 @@ public interface RepairRepository extends JpaRepository<Repair, Integer>,JpaSpec
 	
 	@Query(" select count(r) from Repair r where repair_status = :repairStatus")
     Integer countByRepairStatus(@Param("repairStatus") Integer repairStatus);
+	
+    @Transactional
+    Repair findByCode(String code);
 }
