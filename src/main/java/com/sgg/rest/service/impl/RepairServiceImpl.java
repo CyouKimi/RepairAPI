@@ -62,7 +62,7 @@ public class RepairServiceImpl implements RepairService {
 				f_repair.setContent(repair.getContent());
 			}
 			if (StringUtils.IsNull(repair.getCode())) {
-				f_repair.setContent(repair.getCode());
+				f_repair.setCode(repair.getCode());
 			}
 			if (StringUtils.IsNull(repair.getTelephone())) {
 				f_repair.setTelephone(repair.getTelephone());
