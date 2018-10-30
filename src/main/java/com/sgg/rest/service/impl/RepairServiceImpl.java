@@ -94,13 +94,13 @@ public class RepairServiceImpl implements RepairService {
 
 	@Override
 	public Page<Repair> findRepairNoCriteria(Integer page, Integer size) {
-		  Pageable pageable = new PageRequest(page, size, Sort.Direction.ASC, "id");  
+		  Pageable pageable = new PageRequest(page, size, Sort.Direction.DESC, "id");  
         return repairRepository.findAll(pageable);  
 	}
 
 	@Override
 	public Page<Repair> findRepairCriteria(Integer page, Integer size, RepairQuery repairQuery) {
-        Pageable pageable = new PageRequest(page, size, Sort.Direction.ASC, "id");  
+        Pageable pageable = new PageRequest(page, size, Sort.Direction.DESC, "id");  
         Page<Repair> repairPage = repairRepository.findAll(new Specification<Repair>(){  
             @Override  
             public Predicate toPredicate(Root<Repair> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {  
