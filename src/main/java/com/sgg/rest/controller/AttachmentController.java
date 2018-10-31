@@ -30,7 +30,13 @@ public class AttachmentController {
 		map.put("result",res);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
-	
+	@RequestMapping(value="/createAttachment", method= {RequestMethod.POST,RequestMethod.GET})
+	public ResponseEntity<Map<String,Object>> createAttachmentByRepairId(@RequestParam Integer repairId,@RequestBody Attachment attachment) {
+		boolean res =attachmentService.createAttachment(repairId, attachment);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("result",res);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 	@RequestMapping(value = "/queryList", method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> getAttachmentListByEquipmentId(@PageableDefault(value = 15, sort = { "id" }) @RequestParam int page,@RequestBody AttachmentQuery attachmentQuery) {
 		 Integer size=10;

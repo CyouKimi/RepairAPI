@@ -52,6 +52,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         		.antMatchers("/windbell/**").permitAll() 
 //        		.antMatchers("/documents/**").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, "/user/query").permitAll()
+                .antMatchers(HttpMethod.POST, "/file/upload").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(corsFilter, ChannelProcessingFilter.class)
