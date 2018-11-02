@@ -79,6 +79,9 @@ public class RepairServiceImpl implements RepairService {
 			if (StringUtils.IsNull(repair.getMaterial())) {
 				f_repair.setMaterial(repair.getMaterial());
 			}
+			if (StringUtils.IsNull(repair.getUsecount())) {
+				f_repair.setUsecount(repair.getUsecount());
+			}
 			if (StringUtils.IsNull(repair.getRate())) {
 				f_repair.setRate(repair.getRate());
 			}

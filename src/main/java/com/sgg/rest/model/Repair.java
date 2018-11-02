@@ -34,6 +34,7 @@ public class Repair {
     @OneToOne(cascade=CascadeType.ALL)
     private ApplicationUser repairman;
     private String material;
+    private Integer usecount;
 	@Column(name ="result",length=1024)
     private String result;
     private String rate;
@@ -100,6 +101,12 @@ public class Repair {
 	}
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+	public Integer getUsecount() {
+		return usecount;
+	}
+	public void setUsecount(Integer usecount) {
+		this.usecount = usecount;
 	}
 	public ApplicationUser getRepairman() {
 		return repairman;
