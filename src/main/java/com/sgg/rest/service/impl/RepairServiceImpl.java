@@ -22,7 +22,7 @@ import com.sgg.rest.repository.RepairRepository;
 import com.sgg.rest.repository.UserRepository;
 import com.sgg.rest.service.RepairService;
 import com.sgg.rest.util.StringUtils;
-import  static com.sgg.rest.util.SystemConstants.SEVENTEEN;;
+import  static com.sgg.rest.util.SystemConstants.EIGTHTEEN;;
 @Service
 public class RepairServiceImpl implements RepairService {
 	@Resource  
@@ -111,7 +111,7 @@ public class RepairServiceImpl implements RepairService {
 //            	Predicate p5 = criteriaBuilder.like(root.get("area").as(String.class), repairQuery.getArea()+ "%"); 
             	Predicate p5 = null;
             	if (StringUtils.IsNull(repairQuery.getUserName())) {
-                	p5 = criteriaBuilder.between(root.get("area").as(Integer.class), repairQuery.getArea(), SEVENTEEN);
+                	p5 = criteriaBuilder.between(root.get("area").as(Integer.class), repairQuery.getArea(), EIGTHTEEN);
             	}else {
             		if (repairQuery.getArea() == null) {
             			p5 = criteriaBuilder.like(root.get("area").as(String.class), "%"); 
